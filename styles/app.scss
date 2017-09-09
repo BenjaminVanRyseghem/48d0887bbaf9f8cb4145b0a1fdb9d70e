@@ -1,9 +1,146 @@
-html, body {
+html {
   font: 400 1rem "Helvetica Neue", Helvetica, Arial, sans-serif;
   line-height: 1.5;
+  height: 100%;
   color: #333;
+
+  .btn {
+    cursor: pointer;
+  }
 }
 
-header {
+// Trick to avoid the spinner to not be fully loaded the first time
+.far-away {
+  position: absolute;
+  left: -9999999999px;
+  top: -9999999999px
+}
+
+nav {
+  position: relative;
   text-align: center;
+  height: 100px;
+  background: #7cb9ef;
+
+  h1 {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .actions {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+
+    .btn {
+      margin-left: 4px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  img {
+    border-radius: 50%;
+    margin-right: 8px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .pin {
+    height: 38px;
+    vertical-align: bottom;
+  }
+
+  .spinner {
+    color: white;
+    margin-right: 10px;
+  }
+}
+
+.content {
+  text-align: center;
+  padding-top: 20px;
+
+  .not-logged {
+    padding-top: 40px;
+  }
+
+  .spinner {
+    font-size: 64px;
+  }
+}
+
+.new-tweet {
+  .tweet {
+    margin: 30px auto;
+  }
+
+  .text {
+    position: relative;
+
+    textarea {
+      width: 400px;
+      height: 150px;
+      vertical-align: bottom;
+      display: block;
+      resize: none;
+      margin: auto auto 10px auto;
+    }
+
+    .counter {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      color: #666;
+      font-size: 0.8em;
+    }
+  }
+}
+
+.tweets {
+  ul {
+    padding: 0;
+  }
+
+  .tweet {
+    background: white;
+    text-align: left;
+    list-style: none;
+    margin: 20px auto;
+    padding: 0;
+    border: 1px solid black;
+    border-radius: 10px;
+
+    .text {
+      padding: 40px;
+    }
+
+    .info {
+      background: #618eff;
+      color: white;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 10px;
+
+      .metadata {
+        float: right;
+
+        & > span {
+          width: 32px;
+          display: inline-block;
+          text-align: center;
+
+          .not-retweeted {
+            opacity: 0.4;
+          }
+        }
+      }
+    }
+  }
 }

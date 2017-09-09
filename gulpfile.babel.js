@@ -82,10 +82,24 @@ gulp.task("test:deps:babel", () => {
 		.pipe(gulp.dest(`${paths.build}/browser`));
 });
 
-gulp.task("styles", () => {
+gulp.task("styles", ["styles:sass", "styles:deps"], () => {});
+
+gulp.task("styles:sass", () => {
 	return gulp.src(paths.styles)
 		.pipe(sass().on("error", sass.logError))
-		.pipe(gulp.dest(paths.public));
+		.pipe(gulp.dest(paths.publicCss));
+});
+
+gulp.task("styles:deps", ["styles:deps:css", "styles:deps:fonts"], () => {});
+
+gulp.task("styles:deps:css", () => {
+	return gulp.src(paths.cssDeps)
+		.pipe(gulp.dest(paths.publicCss));
+});
+
+gulp.task("styles:deps:fonts", () => {
+	return gulp.src(paths.fontDeps)
+		.pipe(gulp.dest(paths.publicFonts));
 });
 
 gulp.task("scripts", ["scripts:source", "scripts:test"], () => {});
