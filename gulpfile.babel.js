@@ -69,9 +69,17 @@ gulp.task("test", ["lint", "build", "test:deps"], () => {
 		.pipe(mocha());
 });
 
-gulp.task("test:deps", () => {
-	return gulp.src("test/**/*.opts")
+gulp.task("test:deps", ["test:deps:mocha", "test:deps:babel"], () => {});
+
+gulp.task("test:deps:mocha", () => {
+	return gulp.src(["test/**/*.opts", "test/helpers/**/*.js"])
 		.pipe(gulp.dest("build/test"));
+});
+
+gulp.task("test:deps:babel", () => {
+	return gulp.src(paths.browser)
+		.pipe(babel())
+		.pipe(gulp.dest(`${paths.build}/browser`));
 });
 
 gulp.task("styles", () => {
